@@ -1,11 +1,12 @@
 easy_admin:
-    site_name:  "ONEM | Esapce d'administration"
+    site_name:  "DGRAD | Espace d'administration"
     design:
       menu:
         - { label:  'Acceuil du site', url: '/', rel: 'index' }
         - { entity: 'User', icon: 'user' }
-        - { entity: 'Enterprise', icon: 'landmark' }
+        #- { entity: 'Enterprise', icon: 'landmark' }
         - { entity: 'Offre', icon: 'wpforms' }
+        - { entity: 'Candidat', icon: 'user' }
     user:
       #display_name: true
       name_property_path: 'nom'
@@ -18,13 +19,18 @@ easy_admin:
         label:  'Admin'
         list:
           title:  "La liste des administrateurs"
-      Enterprise:
-        class:  App\Entity\Enterprise
-        label:  'Entreprises'
-        list:
-          title:  "La liste d'entreprises enregistrées"
+      #Enterprise:
+      #  class:  App\Entity\Enterprise
+      #  label:  'Entreprises'
+      #  list:
+      #    title:  "La liste d'entreprises enregistrées"
       Offre:
         class:  App\Entity\Offre
-        label:  "Offres d'emploies"
+        label:  "Offres d'emploie"
         list:
           title:  "La liste d'offres publiées"
+      Candidat:
+        class:  App\Entity\Candidat
+        label:  "Candidat"
+        list:
+          title:  "La liste des candidats"

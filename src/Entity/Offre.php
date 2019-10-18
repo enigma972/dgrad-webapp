@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,7 +21,12 @@ class Offre
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre;
+    private $libelle;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $criteres;
 
     /**
      * @ORM\Column(type="datetime")
@@ -32,58 +39,19 @@ class Offre
     private $dateExpiration;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Enterprise", inversedBy="offres")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidat", mappedBy="offre", orphanRemoval=true)
      */
-    private $enterprise;
+    private $candidats;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $poste;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $typeContrat;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $lieuAffectation;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $formation;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $experience;
-
-
-
-    public function __consctruct()
+    public function __construct()
     {
+        $this->candidats = new ArrayCollection();
         $this->datePublication = new \DateTime();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
-
-    public function setTitre(string $titre): self
-    {
-        $this->titre = $titre;
-
-        return $this;
     }
 
     public function getDatePublication(): ?\DateTimeInterface
@@ -110,85 +78,64 @@ class Offre
         return $this;
     }
 
-    public function getEnterprise(): ?Enterprise
-    {
-        return $this->enterprise;
-    }
-
-    public function setEnterprise(?Enterprise $enterprise): self
-    {
-        $this->enterprise = $enterprise;
-
-        return $this;
-    }
+    
 
     public function __toString()
     {
-        return $this->getTitre();
+        return $this->getLibelle();
     }
 
-    public function getSummary()
+    /**
+     * @return Collection|Candidat[]
+     */
+    public function getCandidats(): Collection
     {
-        return 'Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem';
-        return substr($this->getLibelle(), 1, 100);
+        return $this->candidats;
     }
 
-    public function getTypeContrat(): ?string
+    public function addCandidat(Candidat $candidat): self
     {
-        return $this->typeContrat;
-    }
-
-    public function setTypeContrat(?string $typeContrat): self
-    {
-        $this->typeContrat = $typeContrat;
+        if (!$this->candidats->contains($candidat)) {
+            $this->candidats[] = $candidat;
+            $candidat->setOffre($this);
+        }
 
         return $this;
     }
 
-    public function getLieuAffectation(): ?string
+    public function removeCandidat(Candidat $candidat): self
     {
-        return $this->lieuAffectation;
-    }
-
-    public function setLieuAffectation(?string $lieuAffectation): self
-    {
-        $this->lieuAffectation = $lieuAffectation;
+        if ($this->candidats->contains($candidat)) {
+            $this->candidats->removeElement($candidat);
+            // set the owning side to null (unless already changed)
+            if ($candidat->getOffre() === $this) {
+                $candidat->setOffre(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getFormation(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->formation;
+        return $this->libelle;
     }
 
-    public function setFormation(?string $formation): self
+    public function setLibelle(string $libelle): self
     {
-        $this->formation = $formation;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
-    public function getExperience(): ?string
+    public function getCriteres(): ?string
     {
-        return $this->experience;
+        return $this->criteres;
     }
 
-    public function setExperience(?string $experience): self
+    public function setCriteres(string $criteres): self
     {
-        $this->experience = $experience;
-
-        return $this;
-    }
-
-    public function getPoste(): ?string
-    {
-        return $this->poste;
-    }
-
-    public function setPoste(string $poste): self
-    {
-        $this->poste = $poste;
+        $this->criteres = $criteres;
 
         return $this;
     }

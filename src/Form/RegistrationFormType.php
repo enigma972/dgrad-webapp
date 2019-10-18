@@ -74,7 +74,7 @@ class RegistrationFormType extends AbstractType
                     
                 ],
             ])
-            ->add('adresse', TextType::class, [
+            /* ->add('adresse', TextType::class, [
                 'label' => 'adresse',
                 'attr'  => ['class' =>  'form-control rounded-0'],
                 'constraints' => [
@@ -83,7 +83,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                     
                 ],
-            ])
+            ]) */
             ->add('telephone', TextType::class, [
                 'label' => 'Téléphone',
                 'attr'  => ['class' =>  'form-control rounded-0'],

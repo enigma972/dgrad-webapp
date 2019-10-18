@@ -12,17 +12,20 @@
     			<div class="row">
                 {% for offre in offres %}
                     <div class="col-4 my-2">
-                        <div class="card rounded-0">
-                            <div class="card-header">
-                                {{ offre.titre }} <span class="h6 float-right">le {{ offre.datePublication | date('d/m/Y') }}</span>
-                            </div>
+                        <div class="card text-center">
+                            <h4 class="card-header">
+                                {{ offre.libelle }}
+                            </h4>
                             <div class="card-body">
-                                {{ offre.summary }} ... <a href="{{ path('offre', {'id': offre.id}) }}" class="stretched-link text-decoration-none">Voir en détail.</a>
+                                <p class="card-text" style="text-align: justify;">{{ offre.criteres }}</p><hr>
+                                <p>Date de publication {{ offre.datePublication | date('d/m/y') }} </p><hr>
+                                <p>Date d'expiration  {{ offre.dateExpiration | date('d/m/y') }}</p>
+                                <a href="{{ path('offre_apply', {'id': offre.id}) }}" class="btn btn-block btn-primary">Postuler</a>
                             </div>
-                            <div class="card-footer">
-                                Date d'expiration: {{ offre.dateExpiration | date('d/m/Y') }}
+                            <div class="card-footer text-muted">
+                                DGRAD
                             </div>
-                        </div>
+					    </div>
                     </div>
                 {% else %}
                     Il ya aucune offre valide pour le moment         

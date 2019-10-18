@@ -5,10 +5,11 @@
 {% block section %}
     <div class="container mt-4">
     	<div class="row mt-4">
-    		<div class="col">
-    			<h4 class="h4 d-inline">{{ offre.titre }} </h4>  <h6 class="h6 d-inline">Date d'expiration: {{ offre.dateExpiration | date('d/m/Y') }}</h6>
+    		<div class="col-md-6 offset-md-3">
+    			<h4 class="h4 d-inline">{{ offre.titre }} </h4><h6 class="h6 d-inline">Date d'expiration: {{ offre.dateExpiration | date('d/m/Y') }}</h6>
     			<h6 class="h6">Poste : {{ offre.poste }}</h6>
     			<p> {{ '' }} </p>
+				<div class="mt-5"><a href="{{ path('offre_apply') }}" class="btn btn-block btn-primary">Postuler</a></div>
     		</div>
     	</div>
     </div>

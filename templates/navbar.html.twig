@@ -1,29 +1,24 @@
 <nav class="navbar navbar-expand navbar-light bg-dark fixed-top-" style="-background-color: #e44d3a;">
-  <div class="container">
-    <a class="navbar-brand font-weight-bold" href="/" style="color: white;">
-        <img src="{{ asset('cdn/images/logo.png') }}" width="150" height="45" alt="">
-    </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <ul class="navbar-nav" id="navbar">
-    <li class="nav-item mx-2 text-center"><a href="{{ path('home')}}" class="nav-link border-right-">Acceuil</a></li>
-    <li class="nav-item mx-2 text-center"><a href="{{ path('offres')}}" class="nav-link border-right-">Offres d'emploie</a></li>
-    <li class="nav-item">
-      {% if app.user %}
-      <button class="btn btn-not-focus dropdown-toggle not-caret my-0 nav-btn" data-toggle="dropdown">
-        <img src="{{ asset('cdn/images/avatar-4.png')}}" alt="" class="rounded-circle" style="width: 40px;height: 40px;">
-      </button>
-      <div class="dropdown-menu dropdown-menu-right rounded-0  my-0">
-          <a class="dropdown-item" href="{{ '' }}"><i class="fas fa-user"></i> Modifier le profil</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnecxion <i class="fas fa-sign-out-alt"></i></a>
-      </div>
-      {% else %}
-      <a href="{{ path('app_login') }}" class="btn btn-outline-light rounded-0 shadow-sm nav-btn">Connexion</a>
-      <a href="{{ path('app_register') }}" class="btn btn-outline-light rounded-0 shadow-sm nav-btn">Inscription</a>
-      {% endif %}
-    </li>
-  </ul>
-  </div>
+	<div class="container">
+		<a class="navbar-brand font-weight-bold" href="/" style="color: red; font-size: 25px;">
+				{# <img src="{{ asset('cdn/images/logo.png') }}" width="150" height="45" alt=""> #}
+				DGRAD
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<ul class="navbar-nav" id="navbar">
+			<li class="nav-item mx-2 text-center"><a href="{{ path('home')}}" class="nav-link border-right-">Acceuil</a></li>
+			<li class="nav-item mx-2 text-center"><a href="{{ path('offres')}}" class="nav-link border-right-">Offres d'emploie</a></li>
+			<li class="nav-item mx-2 text-center"><a href="{{ path('contact')}}" class="nav-link border-right-">Nous contacter</a></li>
+			<li class="nav-item mx-2 text-center"><a href="{{ path('about')}}" class="nav-link border-right-">A propos</a></li>
+			{% if app.user %}
+				<li class="nav-item mx-2 text-center"><a href="{{ path('easyadmin')}}" class="nav-link border-right-">Administration</a></li>
+				<li class="nav-item mx-2 text-center"><a href="{{ path('app_logout')}}" class="nav-link border-right-">Déconnexion</a></li>
+			{% else %}
+				<li class="nav-item mx-2 text-center"><a href="{{ path('app_login')}}" class="nav-link border-right-">Se connecter</a></li>
+			{% endif %}
+			{# <li class="nav-item mx-2 text-center"><a href="{{ path('about_plus')}}" class="nav-link border-right-">En savoir plus</a></li> #}
+		</ul>
+	</div>
 </nav>

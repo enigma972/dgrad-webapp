@@ -37,27 +37,27 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $postnom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $adresse;
+    private $sexe;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $telephone;
 
@@ -170,14 +170,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getSexe(): ?string
     {
-        return $this->adresse;
+        return $this->sexe;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setSexe(string $sexe): self
     {
-        $this->adresse = $adresse;
+        $this->sexe = $sexe;
 
         return $this;
     }

@@ -28,8 +28,6 @@ class OffreRepository extends ServiceEntityRepository
         }
         // La construction de la requête reste inchangée
         $query = $this->createQueryBuilder('o')
-                    ->leftJoin('o.enterprise', 'e')
-                    ->addSelect('e')
                     ->orderBy('o.datePublication', 'DESC')
                     ->getQuery()
                 ;
